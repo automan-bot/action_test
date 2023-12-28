@@ -57,11 +57,12 @@ jobs:
           docker images
       - name: 登录服务器拉取镜像并运行
         if: env.SSH_HOST != ''
-        uses: appleboy/ssh-action@v1.0.1
+        uses: garygrossgarten/github-action-ssh@release
         with:
           host: $SSH_HOST
           port: $SSH_PORT
           username: $SSH_USERNAME
           password: $SSH_PASSWORD
-          script: |
+          command: |
             ls -al
+            ipconfig
