@@ -65,4 +65,4 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           command: |
             ls -al
-            ipconfig
+            ifconfig
