@@ -22,6 +22,10 @@ jobs:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       DOCKER_NAMESPACE: ${{ vars.DOCKER_NAMESPACE }}
       DOCKER_IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
     steps:
       - name: Set output
         id: vars
@@ -51,3 +55,13 @@ jobs:
           docker buildx build --platform linux/amd64,linux/arm64 -t $PUBLISH_URL . --push
           docker buildx imagetools inspect $PUBLISH_URL
           docker images
+      - name: 登录服务器拉取镜像并运行
+        if: env.SSH_HOST != ''
+        uses: appleboy/ssh-action@v1.0.1
+        with:
+          host: $SSH_HOST
+          port: $SSH_PORT
+          username: $SSH_USERNAME
+          password: $SSH_PASSWORD
+          script: |
+            ls -al
