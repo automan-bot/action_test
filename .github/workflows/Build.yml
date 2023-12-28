@@ -22,10 +22,10 @@ jobs:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       DOCKER_NAMESPACE: ${{ vars.DOCKER_NAMESPACE }}
       DOCKER_IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
-      SSH_HOST: ${{ secrets.SSH_HOST }}
-      SSH_PORT: ${{ secrets.SSH_PORT }}
-      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-      SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+      # SSH_HOST: ${{ secrets.SSH_HOST }}
+      # SSH_PORT: ${{ secrets.SSH_PORT }}
+      # SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      # SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
     steps:
       - name: Set output
         id: vars
@@ -59,10 +59,10 @@ jobs:
         if: env.SSH_HOST != ''
         uses: garygrossgarten/github-action-ssh@release
         with:
-          host: $SSH_HOST
-          port: $SSH_PORT
-          username: $SSH_USERNAME
-          password: $SSH_PASSWORD
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           command: |
             ls -al
             ipconfig
