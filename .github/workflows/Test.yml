@@ -17,14 +17,6 @@ jobs:
         run: |
           echo "Hello, World!" > myfile.txt
 
-      - name: Save Changes
-        run: git add myfile.txt
-
-      - name: Commit Changes
-        run: |
-          git config user.name "Action"
-          git config user.email "aaa@bbb.com"
-          git commit -m "Update myfile.txt"
-
-      - name: Push Changes
-        run: git push
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Automated Change
