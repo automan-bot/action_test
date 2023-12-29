@@ -1,0 +1,30 @@
+name: Modify and Commit
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  modify-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Modify File
+        run: |
+          echo "Hello, World!" > myfile.txt
+
+      - name: Save Changes
+        run: git add myfile.txt
+
+      - name: Commit Changes
+        run: |
+          git config user.name "Action"
+          git config user.email "aaa@bbb.com"
+          git commit -m "Update myfile.txt"
+
+      - name: Push Changes
+        run: git push
