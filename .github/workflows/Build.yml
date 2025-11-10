@@ -23,7 +23,7 @@ jobs:
       DOCKER_IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_HOST: ${{ vars.SSH_HOST }}
       # SSH_PORT: ${{ secrets.SSH_PORT }}
       # SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       # SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
@@ -73,8 +73,8 @@ jobs:
         if: env.SSH_HOST != ''
         uses: garygrossgarten/github-action-ssh@release
         with:
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
+          host: ${{ vars.SSH_HOST }}
+          port: ${{ vars.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           command: |
