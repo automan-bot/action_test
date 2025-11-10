@@ -78,5 +78,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           command: |
+            echo ${{env.DOCKER_PASSWORD}} | docker login -u ${{env.DOCKER_USERNAME}} --password-stdin ${{env.DOCKER_REGISTRY}}
             docker pull ${{env.DOCKER_REGISTRY}}/${{env.DOCKER_NAMESPACE}}/${{env.DOCKER_IMAGE_NAME}}:${{steps.vars.outputs.short_ref}}
             echo "拉取镜像成功"
